@@ -1,9 +1,220 @@
-/* Main Style Sheet */
+/* Main CSS Style Sheet */
 
+/* ————————————––––––––––––––––––––––––––––
+	=GLOBAL
+————————————–––––––––––––––––––––––––––– */
 html {
-
+	font-size: 16px;
 }
 
 body {
-
+	max-width: 1200px;
+	margin: auto;
+	padding: 1rem;
+	font-family: 'Lato', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
+
+section {
+	margin-bottom: 4rem;
+}
+
+section:last-of-type {
+	margin-bottom: 3rem;
+} /* Last child does not work here */
+
+h1,
+h2,
+h3 {
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+}
+
+h1 {
+	font-size: 2.5em;
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 2em;
+	font-weight: 700;
+}
+
+h3 {
+	font-size: 1.25em;
+	font-weight: 700;
+}
+
+button,
+a {
+	transition: .25s
+}
+
+
+img {
+	vertical-align: middle;
+	max-width: 100%
+}
+
+
+
+/* ————————————––––––––––––––––––––––––––––
+	=MOBILE FIRST
+————————————–––––––––––––––––––––––––––– */
+/* –––– =Header Section –––– */
+.header__tagline {
+	font-family: 'Lora', serif;
+	font-size: .5em;
+	font-weight: 400;
+	display: block;
+}
+
+
+/* –––– =Reservations Section –––– */
+.reservations__make-reservation,
+.reservations__existing-reservation {
+	background-color: #e1e1e1;
+	padding:1em;
+}
+
+.reservations__make-reservation h3,
+.reservations__existing-reservation h3 {
+	margin-top: 0;
+}
+
+.reservations__make-reservation {
+	margin-bottom: 1em;
+}
+
+.reservations__form-row {
+	margin-bottom: 0.5em;
+}
+
+.reservations__form-row:last-child {
+	margin-bottom: 0;
+}
+
+.reservations__make-reservation label {
+	display: inline-block;
+	width: 20%;
+}
+
+.reservations__make-reservation input {
+	display: inline-block;
+	max-width: 75%;
+	width: 100%; /* width & max-width combo allow for scaling & to grow larger if the content isn't there */
+	padding: .5em;
+	border: 1px solid #E0E5EA;
+	font-size: 1em;
+}
+
+.reservations__make-reservation button {
+	color: #fff;
+	background-color: #2569bc;
+	border-radius: 8px;
+	padding: .5em .75em;
+	border: none;
+	cursor: pointer;
+}
+
+.reservations__make-reservation button:hover {
+	background-color: #0b3489;
+}
+
+.reservations__existing-reservation table {
+	width: 100%
+}
+
+
+/* –––– =Dine Section –––– */
+.dine__map-container {
+	height: 70vh;
+}
+
+#map {
+	height: 100%;
+}
+
+
+/* –––– =Reviews Section –––– */
+.reviews__column-container-one {
+	margin-bottom: 1em;
+}
+
+.reviews img {
+	display: block;
+	margin: auto;
+}
+
+.reviews blockquote {
+	margin: 0;
+	text-align: center;
+}
+
+.reviews blockquote span {
+	font-family: 'Lora', serif;
+	font-style: italic;
+	font-size: .75em;
+}
+
+
+/* ————————————––––––––––––––––––––––––––––
+	=MIN-WIDTH: 768PX;
+————————————–––––––––––––––––––––––––––– */
+@media screen and (min-width: 768px) {
+	/* –––– =Dine Section –––– */
+	.dine__map-container {
+		height: 60vh;
+	}
+
+
+	/* –––– =Reservations Section –––– */
+	.reservations__make-reservation,
+	.reservations__existing-reservation {
+		display: inline-block;
+		width: calc(46.5% - 1.5em);
+		vertical-align: top;
+		margin-bottom: 0;
+	}
+
+	.reservations__make-reservation {
+		margin-right: 1.5em;
+	}
+
+	.reservations__make-reservation label {
+		width: 20%;
+	}
+
+	.reservations__make-reservation input {
+		max-width: 72%;
+	}
+
+
+	/* –––– =Reviews Section –––– */
+	.reviews__column-container-one,
+	.reviews__column-container-two {
+		display: inline-block;
+		width: calc(46.5% - 1.5em);
+		vertical-align: top;
+		margin-bottom: 0;
+	}
+
+	.reviews__column-container-one {
+		margin-right: 1.5em;
+	}
+
+	.reviews blockquote {
+		text-align: right;
+		padding-left: 4em;
+	}
+} /* /@media screen and (min-width: 768px) */
+
+
+
+/* ————————————––––––––––––––––––––––––––––
+	=MIN-WIDTH: 1024PX;
+————————————–––––––––––––––––––––––––––– */
+@media screen and (min-width: 768px) {
+
+} /* /@media screen and (min-width: 1024px) */

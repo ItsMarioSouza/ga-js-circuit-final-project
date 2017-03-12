@@ -1,19 +1,84 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
 	<head>
-		<!-- META -->
-		<meta content="width=device-width, initial-scale=1.0" name="viewport">
-		<title></title>
+		<!-- Meta -->
+		<title>Monk's Cafe</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<meta name="description" content="Lorem ipsum dolar sit amet." />
 
-		<!-- STYLES -->
+		<!-- Styles -->
+		<link rel="stylesheet" type="text/css" href="ux/vendor/normalize.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Lora:400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="ux/css/styles.css">
 	</head>
 
 	<body>
-		<h1>Hello World</h1>
+		<section class="header">
+			<h1>
+				Monk’s Cafe
+				<span class="header__tagline">“The Coffee Shop”</span>
+			</h1>
+			<img src="ux/images/toms-restaurant.jpg" alt="" />
+		</section>
 
-		<!-- SCRIPTS -->
-		<script src=""></script>
+		<section class="reservations">
+			<h2>Reservations</h2>
+			<div class="reservations__make-reservation">
+				<h3>Make a Reservation</h3>
+				<form>
+					<div class="reservations__form-row">
+						<label for="name">Name</label>
+						<input type="text" name="name" id="name" placeholder="Placeholder Text">
+					</div>
+					<div class="reservations__form-row">
+						<label for="day">Day</label>
+						<input type="text" name="day" id="day" placeholder="Placeholder Text">
+					</div>
+					<div class="reservations__form-row">
+						<button>Confirm Reservation</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="reservations__existing-reservation">
+				<h3>Existing Reservations</h3>
+				<table>
+					<thead>
+						<th>Column Header 1</th>
+						<th>Column Header 2</th>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="dine">
+			<h2>Come Dine with Us</h2>
+			<div class="dine__map-container">
+				<div id="map"></div> <!-- Google Maps -->
+			</div>
+		</section>
+
+		<section class="reviews">
+			<h2>Customer Reviews</h2>
+			<div class="reviews__column-container-one">
+				<img src="ux/images/jerry.jpg" alt="" />
+			</div>
+			<div class="reviews__column-container-two">
+				<blockquote>
+					“Big lettuce, big carrots, tomatoes like volleyballs.”
+					<br />
+					<span>— Jerry Seinfeld, on The BIG Salad</span>
+				</blockquote>
+			</div>
+		</section>
+
+		<!-- Scripts -->
+		<script src="ux/vendor/jquery-3.1.1.min.js"></script>
 		<script src="ux/js/main.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcvejIEDq80k05guiP3-6M6q29Sw-rTnw&callback=initMap"
+		async defer></script>
+
 	</body>
 </html>

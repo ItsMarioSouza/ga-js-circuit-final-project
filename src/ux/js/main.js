@@ -1,4 +1,20 @@
 /* ––––––––––––––––––––––––––––––––––––––––  
+    EXTRA GOALS TO CONSIDER
+–––––––––––––––––––––––––––––––––––––––– */
+// Disabling days that are booked
+// Having an option to select time
+
+
+/* ––––––––––––––––––––––––––––––––––––––––  
+    QUESTIONS
+–––––––––––––––––––––––––––––––––––––––– */
+// How do you test each field and display an error message independently for each, js.validate?
+// How would I show hours? 
+// Is that the best way to reet the form?
+// Why does the template names {{test}} need to match the DB?
+
+
+/* ––––––––––––––––––––––––––––––––––––––––  
     Google Firebase API
 –––––––––––––––––––––––––––––––––––––––– */
 // Initialize Firebase
@@ -22,19 +38,21 @@ var reservationData = {};
 
 
 /* ––––––––––––––––––––––––––––––––––––––––  
-    Get & Push Input Form Data
+    Get & Push Input Form Data to DB
 –––––––––––––––––––––––––––––––––––––––– */
 $('.form').on('submit', function(event) {
     event.preventDefault();
 
+    // Define variables for the values entedred in name & date feilds
+        /* Variables can't be global becasuse they'd always be set to "" on page load, 
+           need to define them when data is entered/form is submitted */
     var userInputName = $(".form__name").val();
 
     var userInputDate = $(".form__date").val();
-        /* Variables can't be global becasuse they would always be set to "" at page load.
-           need to define them when data is ebtered or when the form is submitted */
 
     if (userInputName === "" || userInputDate === "") {
-        alert("Form Field(s) are Empty");
+        // alert("Form Field(s) are Empty");
+        $('.form__error-message').fadeIn();
     } else {
         reservationData.name = userInputName;
 
@@ -53,8 +71,24 @@ $('.form').on('submit', function(event) {
 });
 
 
-
-
+/* ––––––––––––––––––––––––––––––––––––––––  
+    Update The DOM w/ DB Data
+–––––––––––––––––––––––––––––––––––––––– */
+// on initial load and addition of each reservation update the view
+database.ref('reservations').on('child_added', function(results) {
+    // grab element to hook to
+    var reservationsList = $('.reservations-list');
+    // get data from database
+    var reservations = results.val();
+    // get your template from your script tag
+    var source = $('#reservation-template').html();
+    // compile template
+    var template = Handlebars.compile(source);
+    // pass data to template to be evaluated within handlebars as the template is created
+    var reservationTemplate = template(reservations);
+    // append created templated
+    reservationsList.append(reservationTemplate);
+});
 
 
 /* ––––––––––––––––––––––––––––––––––––––––  

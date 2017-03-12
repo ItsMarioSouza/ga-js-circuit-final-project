@@ -57,6 +57,34 @@ img {
 	max-width: 100%
 }
 
+.form__error-message {
+	display: none;
+	color: red;
+	font-style: italic;
+	font-size: 14px;
+	margin: 0;
+}
+
+.flex-test {
+	display: block;
+}
+
+@media screen and (min-width: 768px) {
+	.flex-test {
+		display: flex;
+	}
+}
+
+.reservations__required-callout {
+	display: block;
+	font-size: 14px;
+	font-style: italic;
+	margin: 5px 0 0 2px;
+}
+
+.reservations-list td {
+	text-align: center;
+}
 
 
 /* ————————————––––––––––––––––––––––––––––
@@ -172,9 +200,7 @@ img {
 	/* –––– =Reservations Section –––– */
 	.reservations__make-reservation,
 	.reservations__existing-reservation {
-		display: inline-block;
-		width: calc(46.5% - 1.5em);
-		vertical-align: top;
+		width: 50%;
 		margin-bottom: 0;
 	}
 

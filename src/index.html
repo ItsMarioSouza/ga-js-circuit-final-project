@@ -25,33 +25,47 @@
 
 		<section class="reservations">
 			<h2>Reservations</h2>
-			<div class="reservations__make-reservation">
-				<h3>Make a Reservation</h3>
-				<form class="form">
-					<div class="reservations__form-row">
-						<label for="name">Name</label>
-						<input class="form__name" type="text" name="name" id="name" placeholder="Jane Doe">
-					</div>
-					<div class="reservations__form-row">
-						<label for="datePicker">Day</label>
-						<input class="form__date" type="text" name="day" id="datePicker" placeholder="Month/Day/Year">
-					</div>
-					<div class="reservations__form-row">
-						<button>Confirm Reservation</button>
-					</div>
-				</form>
-			</div>
+			<div class="flex-test">
+				<div class="reservations__make-reservation">
+					<h3>Make a Reservation</h3>
+					<form class="form">
+						<div class="reservations__form-row">
+							<label for="name">Name</label>
+							<input class="form__name" type="text" name="name" id="name" placeholder="Jane Doe">
+							<p class="form__error-message">The above feild is required</p>
+						</div>
+						<div class="reservations__form-row">
+							<label for="datePicker">Day</label>
+							<input class="form__date" type="text" name="day" id="datePicker" placeholder="Month/Day/Year">
+							<p class="form__error-message">The above feild is required</p>
+						</div>
+						<div class="reservations__form-row">
+							<button>Confirm Reservation</button>
+							<br />
+							<span class="reservations__required-callout">All feilds are required</span>
+						</div>
+					</form>
+				</div>
 
-			<div class="reservations__existing-reservation">
-				<h3>Existing Reservations</h3>
-				<table>
-					<thead>
-						<th>Column Header 1</th>
-						<th>Column Header 2</th>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
+				<div class="reservations__existing-reservation">
+					<h3>Existing Reservations</h3>
+					<table>
+						<thead>
+							<th>Column Header 1</th>
+							<th>Column Header 2</th>
+						</thead>
+						<tbody class="reservations-list">
+							<!-- template for reservation-list -->
+							<script id="reservation-template" type="text/x-handlebars-template">
+								<tr>
+									<td>{{name}}</td>
+									<td>{{date}}</td>
+								</tr>
+							</script>
+						</tbody>
+					</table>
+				</div>
+			<div>
 		</section>
 
 		<section class="dine">
@@ -79,6 +93,7 @@
 		<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
 		<script src="ux/vendor/jquery-3.1.1.min.js"></script>
 		<script src="ux/vendor/jquery-ui/jquery-ui.min.js"></script>
+		<script src="ux/vendor/handlebars-v4.0.5.js"></script>
 		<script src="ux/js/main.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcvejIEDq80k05guiP3-6M6q29Sw-rTnw&callback=initMap"
 		async defer></script>

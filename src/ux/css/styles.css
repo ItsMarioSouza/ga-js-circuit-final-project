@@ -48,7 +48,12 @@ h3 {
 
 button,
 a {
-	transition: .25s
+	transition: .25s;
+}
+
+button,
+i {
+	cursor: pointer;
 }
 
 
@@ -57,33 +62,12 @@ img {
 	max-width: 100%
 }
 
-.form__error-message {
-	display: none;
-	color: red;
-	font-style: italic;
-	font-size: 14px;
-	margin: 0;
+footer {
+	padding: 4em 0;
 }
 
-.flex-test {
-	display: block;
-}
-
-@media screen and (min-width: 768px) {
-	.flex-test {
-		display: flex;
-	}
-}
-
-.reservations__required-callout {
-	display: block;
-	font-size: 14px;
-	font-style: italic;
-	margin: 5px 0 0 2px;
-}
-
-.reservations-list td {
-	text-align: center;
+.footer__container {
+	border-top: 1px solid gray;
 }
 
 
@@ -116,7 +100,7 @@ img {
 }
 
 .reservations__form-row {
-	margin-bottom: 0.5em;
+	margin-bottom: 0.75em;
 }
 
 .reservations__form-row:last-child {
@@ -141,9 +125,8 @@ img {
 	color: #fff;
 	background-color: #2569bc;
 	border-radius: 8px;
-	padding: .5em .75em;
+	padding: .5em 1.5em;
 	border: none;
-	cursor: pointer;
 }
 
 .reservations__make-reservation button:hover {
@@ -152,6 +135,42 @@ img {
 
 .reservations__existing-reservation table {
 	width: 100%
+}
+
+.form__error-message {
+	display: none;
+	color: red;
+	font-style: italic;
+	font-size: 14px;
+	margin: 0;
+}
+
+.flex-test {
+	display: block;
+}
+
+.reservations__required-callout {
+	display: block;
+	font-size: 14px;
+	font-style: italic;
+	margin: 5px 0 0 2px;
+}
+
+table {
+	border-collapse: collapse; /* allows the <tr> border-bottom to display */
+}
+
+.reservations-list td {
+	text-align: center;
+	padding: .5em 0;
+}
+
+.reservations-list tr {
+	border-bottom: 1px solid gray;
+}
+
+.reservations-list tr:last-child {
+	border-bottom: none;
 }
 
 
@@ -191,6 +210,11 @@ img {
 	=MIN-WIDTH: 768PX;
 ————————————–––––––––––––––––––––––––––– */
 @media screen and (min-width: 768px) {
+	.flex-test {
+		display: flex;
+	}
+
+
 	/* –––– =Dine Section –––– */
 	.dine__map-container {
 		height: 60vh;
@@ -213,7 +237,7 @@ img {
 	}
 
 	.reservations__make-reservation input {
-		max-width: 72%;
+		max-width: 75%;
 	}
 
 
@@ -241,6 +265,6 @@ img {
 /* ————————————––––––––––––––––––––––––––––
 	=MIN-WIDTH: 1024PX;
 ————————————–––––––––––––––––––––––––––– */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
 
 } /* /@media screen and (min-width: 1024px) */

@@ -40,7 +40,7 @@
 							<p class="form__error-message">The above feild is required</p>
 						</div>
 						<div class="reservations__form-row">
-							<button>Confirm Reservation</button>
+							<button type="sumbit">Submit</button>
 							<br />
 							<span class="reservations__required-callout">All feilds are required</span>
 						</div>
@@ -51,15 +51,17 @@
 					<h3>Existing Reservations</h3>
 					<table>
 						<thead>
-							<th>Column Header 1</th>
-							<th>Column Header 2</th>
+							<th>Name</th>
+							<th>Date</th>
+							<th>Options</th>
 						</thead>
 						<tbody class="reservations-list">
 							<!-- template for reservation-list -->
 							<script id="reservation-template" type="text/x-handlebars-template">
-								<tr>
+								<tr data-id="{{reservationID}}">
 									<td>{{name}}</td>
 									<td>{{date}}</td>
+									<td><button class="delete">Delete</button></td>
 								</tr>
 							</script>
 						</tbody>
@@ -88,6 +90,12 @@
 				</blockquote>
 			</div>
 		</section>
+
+		<footer class="footer">
+			<div class="footer__container">
+				<p>Lorem Ipsum</p>
+			</div>
+		</footer>
 
 		<!-- Scripts -->
 		<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>

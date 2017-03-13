@@ -3,6 +3,8 @@
 –––––––––––––––––––––––––––––––––––––––– */
 // Disabling days that are booked
 // Having an option to select time
+// Display a view of only X reservations at a time
+// Get height of each section and anchor link down to it
 
 
 /* ––––––––––––––––––––––––––––––––––––––––  
@@ -10,8 +12,10 @@
 –––––––––––––––––––––––––––––––––––––––– */
 // How do you test each field and display an error message independently for each, js.validate?
 // How would I show hours? 
-// Is that the best way to reet the form?
+// Is that the best way to reset the form?
 // Why does the template names {{test}} need to match the DB?
+// Is it better to call the DB results like this or the for loop we've learned?
+// How can I pass the DB ID?
 
 
 /* ––––––––––––––––––––––––––––––––––––––––  
@@ -74,20 +78,40 @@ $('.form').on('submit', function(event) {
 /* ––––––––––––––––––––––––––––––––––––––––  
     Update The DOM w/ DB Data
 –––––––––––––––––––––––––––––––––––––––– */
-// on initial load and addition of each reservation update the view
-database.ref('reservations').on('child_added', function(results) {
-    // grab element to hook to
-    var reservationsList = $('.reservations-list');
-    // get data from database
-    var reservations = results.val();
-    // get your template from your script tag
-    var source = $('#reservation-template').html();
-    // compile template
-    var template = Handlebars.compile(source);
-    // pass data to template to be evaluated within handlebars as the template is created
-    var reservationTemplate = template(reservations);
-    // append created templated
-    reservationsList.append(reservationTemplate);
+function getReservations() {
+    // on initial load and addition of each reservation update the view
+    database.ref('reservations').on('child_added', function(results) {
+        // grab element to hook to
+        var reservationsList = $('.reservations-list');
+        // get data from database
+        var context = results.val();
+        // get your template from your script tag
+        var source = $('#reservation-template').html();
+        // compile template
+        var template = Handlebars.compile(source);
+        // pass data to template to be evaluated within handlebars as the template is created
+        var reservationTemplate = template(context);
+        // append created templated
+        reservationsList.append(reservationTemplate);
+    });
+}
+
+getReservations();
+
+
+/* ––––––––––––––––––––––––––––––––––––––––  
+    Deleting Reservations
+–––––––––––––––––––––––––––––––––––––––– */
+// Click event to delete comments
+$('.reservations-list').on('click', '.delete', function (event) {
+    // Get the ID for the comment we want to update
+    var id = $(event.target).parent().data('id')
+
+    // find comment whose objectId is equal to the id we're searching with
+    var reservationReference = database.ref('reservations/' + id)
+
+    // Use remove method to remove the comment from the database
+    reservationReference.remove()
 });
 
 

@@ -54,6 +54,28 @@ $('.form').on('submit', function(event) {
 
     var userInputDate = $(".form__date").val();
 
+// Do a loop to iterate through all inputs
+// $("input").each(function(input) { 
+//    if(input.val === "") {
+//        input.next().fadeIn();
+//    }
+//    else {
+//         reservationData.name = userInputName;
+
+//         reservationData.date = userInputDate;
+
+//         // Reset form
+//             // Found this online only works wiht the [0] index, but why?
+//         $(".form")[0].reset();
+
+//         var reservationsReference = database.ref('reservations');
+
+//         reservationsReference.push(reservationData);
+
+//         console.log("Data Sumbitted: " + userInputName + " " + userInputDate);
+//    }
+// });
+
     if (userInputName === "" || userInputDate === "") {
         // alert("Form Field(s) are Empty");
         $('.form__error-message').fadeIn();
@@ -62,7 +84,7 @@ $('.form').on('submit', function(event) {
 
         reservationData.date = userInputDate;
 
-        // RESET FORM...
+        // Reset form
             // Found this online only works wiht the [0] index, but why?
         $(".form")[0].reset();
 
@@ -80,11 +102,11 @@ $('.form').on('submit', function(event) {
 –––––––––––––––––––––––––––––––––––––––– */
 function getReservations() {
     // on initial load and addition of each reservation update the view
-    database.ref('reservations').on('child_added', function(results) {
+    database.ref('reservations').on('child_added', function(snapshot) {
         // grab element to hook to
         var reservationsList = $('.reservations-list');
         // get data from database
-        var context = results.val();
+        var context = snapshot.val();
         // get your template from your script tag
         var source = $('#reservation-template').html();
         // compile template
@@ -111,7 +133,7 @@ $('.reservations-list').on('click', '.delete', function (event) {
     var reservationReference = database.ref('reservations/' + id)
 
     // Use remove method to remove the comment from the database
-    reservationReference.remove()
+    reservationReference.remove();
 });
 
 

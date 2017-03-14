@@ -17,7 +17,7 @@ body {
 }
 
 section {
-	margin-bottom: 4rem;
+	margin-bottom: 5rem;
 }
 
 section:last-of-type {
@@ -88,6 +88,7 @@ footer {
 .reservations__existing-reservation {
 	background-color: #e1e1e1;
 	padding:1em;
+	transition: .25s;
 }
 
 .reservations__make-reservation h3,
@@ -142,7 +143,11 @@ footer {
 	color: red;
 	font-style: italic;
 	font-size: 14px;
-	margin: 0;
+	margin: 0 0 8px 0;
+}
+
+.form__success-message {
+	display: none;
 }
 
 .flex-test {

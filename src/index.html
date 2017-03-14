@@ -16,6 +16,17 @@
 
 	<body>
 		<section class="header">
+			<!-- <ul>
+				<li class="link-one">
+					<a href="">Link 1</a>
+				</li>
+				<li class="link-two">
+					<a href="">Link 1</a>
+				</li>
+				<li class="link-three">
+					<a href="">Link 1</a>
+				</li>
+			</ul> -->
 			<h1>
 				Monk’s Cafe
 				<span class="header__tagline">“The Coffee Shop”</span>
@@ -32,17 +43,15 @@
 						<div class="reservations__form-row">
 							<label for="name">Name</label>
 							<input class="form__name" type="text" name="name" id="name" placeholder="Jane Doe">
-							<p class="form__error-message">The above feild is required</p>
 						</div>
 						<div class="reservations__form-row">
 							<label for="datePicker">Day</label>
 							<input class="form__date" type="text" name="day" id="datePicker" placeholder="Month/Day/Year">
-							<p class="form__error-message">The above feild is required</p>
 						</div>
 						<div class="reservations__form-row">
+							<p class="form__error-message">All above feilds are required</p>
 							<button type="sumbit">Submit</button>
-							<br />
-							<span class="reservations__required-callout">All feilds are required</span>
+							<p class="form__success-message">Thank you, your reservation has been set.</p>
 						</div>
 					</form>
 				</div>
@@ -56,19 +65,22 @@
 							<th>Options</th>
 						</thead>
 						<tbody class="reservations-list">
-							<!-- template for reservation-list -->
-							<script id="reservation-template" type="text/x-handlebars-template">
-								<tr data-id="{{reservationID}}">
-									<td>{{name}}</td>
-									<td>{{date}}</td>
-									<td><button class="delete">Delete</button></td>
-								</tr>
-							</script>
+							<!-- /Handlebars Template-->
 						</tbody>
 					</table>
+
+					<!-- template for reservation-list -->
+					<script id="reservation-template" type="text/x-handlebars-template">
+						<tr data-id="{{uID}}"">
+							<td>{{name}}</td>
+							<td>{{date}}</td>
+							<td><button class="delete">Delete</button></td>
+						</tr>
+					</script>
 				</div>
 			<div>
 		</section>
+
 
 		<section class="dine">
 			<h2>Come Dine with Us</h2>
@@ -93,7 +105,7 @@
 
 		<footer class="footer">
 			<div class="footer__container">
-				<p>Lorem Ipsum</p>
+				<!-- <p>Lorem Ipsum</p> -->
 			</div>
 		</footer>
 

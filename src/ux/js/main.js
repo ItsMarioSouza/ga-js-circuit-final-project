@@ -1,21 +1,12 @@
 /* ––––––––––––––––––––––––––––––––––––––––  
-    EXTRA GOALS TO CONSIDER
+    Future Functionality
 –––––––––––––––––––––––––––––––––––––––– */
-// Disabling days that are booked
-// Having an option to select time
+// Reservations by time
+// Disabling days and times that are booked
 // Display a view of only X reservations at a time
+// Display reservations in inrder by date
 // Get height of each section and anchor link down to it
-
-
-/* ––––––––––––––––––––––––––––––––––––––––  
-    QUESTIONS
-–––––––––––––––––––––––––––––––––––––––– */
-// How do you test each field and display an error message independently for each, js.validate?
-// How would I show hours? 
-// Is that the best way to reset the form?
-// Why does the template names {{test}} need to match the DB?
-// Is it better to call the DB results like this or the for loop we've learned?
-// How can I pass the DB ID?
+// Independent input error messages
 
 
 /* ––––––––––––––––––––––––––––––––––––––––  
@@ -48,51 +39,36 @@ $('.form').on('submit', function(event) {
     event.preventDefault();
 
     // Define variables for the values entedred in name & date feilds
-        /* Variables can't be global becasuse they'd always be set to "" on page load, 
-           need to define them when data is entered/form is submitted */
+        /* 
+        Variables can't be global becasuse they'd always be set to "" on 
+        page load, need to define them when data is entered/form is submitted 
+        */
     var userInputName = $(".form__name").val();
 
     var userInputDate = $(".form__date").val();
 
-// Do a loop to iterate through all inputs
-// $("input").each(function(input) { 
-//    if(input.val === "") {
-//        input.next().fadeIn();
-//    }
-//    else {
-//         reservationData.name = userInputName;
-
-//         reservationData.date = userInputDate;
-
-//         // Reset form
-//             // Found this online only works wiht the [0] index, but why?
-//         $(".form")[0].reset();
-
-//         var reservationsReference = database.ref('reservations');
-
-//         reservationsReference.push(reservationData);
-
-//         console.log("Data Sumbitted: " + userInputName + " " + userInputDate);
-//    }
-// });
-
     if (userInputName === "" || userInputDate === "") {
-        // alert("Form Field(s) are Empty");
         $('.form__error-message').fadeIn();
     } else {
         reservationData.name = userInputName;
 
         reservationData.date = userInputDate;
 
-        // Reset form
-            // Found this online only works wiht the [0] index, but why?
-        $(".form")[0].reset();
-
         var reservationsReference = database.ref('reservations');
 
         reservationsReference.push(reservationData);
 
-        console.log("Data Sumbitted: " + userInputName + " " + userInputDate);
+        // Reset form
+        $(".form")[0].reset();
+
+        // Clear error message
+        $('.form__error-message').css("display", "none");
+
+        // Display success message
+        $('.form__success-message').fadeIn();
+
+        // Check data being sent to DB
+        //console.log("Data Sumbitted: " + userInputName + " " + userInputDate);
     }
 });
 
@@ -102,19 +78,40 @@ $('.form').on('submit', function(event) {
 –––––––––––––––––––––––––––––––––––––––– */
 function getReservations() {
     // on initial load and addition of each reservation update the view
-    database.ref('reservations').on('child_added', function(snapshot) {
-        // grab element to hook to
-        var reservationsList = $('.reservations-list');
-        // get data from database
-        var context = snapshot.val();
-        // get your template from your script tag
-        var source = $('#reservation-template').html();
-        // compile template
-        var template = Handlebars.compile(source);
-        // pass data to template to be evaluated within handlebars as the template is created
-        var reservationTemplate = template(context);
-        // append created templated
-        reservationsList.append(reservationTemplate);
+    database.ref('reservations').on('value', function(results) {
+        // Get all reservations stored in the db
+        var allReservations = results.val();
+
+        // Remove all reservations from DOM
+            /*
+                why: we're listening for a change in the DB and on change, 
+                we're dynamically printing all results on the page.
+                If rsults are on the page during load, any change will 
+                cause duplicates untill reload.
+            */
+        $('.reservations-list').empty();
+
+        // Loop through all reservations coming from database call
+        // Create the new reservation using Handlebars
+        for (var i in allReservations) {
+            // Get the HTML template
+            var source = $('#reservation-template').html();
+
+            // Complile the template
+            var template = Handlebars.compile(source);
+
+            // Pass the releveant data
+            var context = {
+                name: allReservations[i].name,
+                date: allReservations[i].date,
+                uID: i
+            };
+
+            // Append the new reservation to the list
+            var reservationItem = template(context);
+
+            $('.reservations-list').append(reservationItem);
+        }
     });
 }
 
@@ -127,7 +124,7 @@ getReservations();
 // Click event to delete comments
 $('.reservations-list').on('click', '.delete', function (event) {
     // Get the ID for the comment we want to update
-    var id = $(event.target).parent().data('id')
+    var id = $(event.target).closest('tr').data('id')
 
     // find comment whose objectId is equal to the id we're searching with
     var reservationReference = database.ref('reservations/' + id)
@@ -143,6 +140,21 @@ $('.reservations-list').on('click', '.delete', function (event) {
 $( function() {
     $( "#datePicker" ).datepicker();
 });
+
+
+/* ––––––––––––––––––––––––––––––––––––––––  
+    Scroll To Location
+–––––––––––––––––––––––––––––––––––––––– */
+// $('.link-one').on('click', function(event) {
+//     event.preventDefault();
+
+//     $('html, body').animate({
+//         scrollTop: $(".reservations").offset().top
+//     }, 1000);
+// });
+
+// Above works, but is not scalable,
+// need to find a way to tie the #anchor 
 
 
 /* ––––––––––––––––––––––––––––––––––––––––  
@@ -165,5 +177,3 @@ function initMap() {
         title: 'Monks Cafe'
     });
 }
-
-
